@@ -1,0 +1,32 @@
+#!/bin/bash 
+
+arg1="install"
+arg2="uninstall"
+arg3="remove"
+arg4="sync"
+arg5="update"
+arg6="live-update"
+arg7="search"
+
+if [ "$1" == "$arg1" ]; then
+    shift
+    emerge -av $*
+elif [ "$1" == "$arg2" ]; then
+    shift
+    emerge -a --depclean $*
+elif [ "$1" == "$arg3" ]; then
+    shift
+    emerge -aC $*
+elif [ "$1" == "$arg4" ]; then
+    shift
+    emerge --sync
+elif [ "$1" == "$arg5" ]; then
+    shift
+    emerge -avuND @world
+elif [ "$1" == "$arg6" ]; then
+    shift
+    smart-live-rebuild
+elif [ "$1" == "$arg7" ]; then
+    shift
+    emerge --search $*
+fi
