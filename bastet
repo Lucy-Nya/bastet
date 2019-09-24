@@ -8,6 +8,13 @@ arg5="update"
 arg6="live-update"
 arg7="search"
 
+### Checking if eix is installed
+if test -f /usr/bin/eix; then
+    eix=1
+else
+    eix=0
+fi
+
 if [ "$1" == "$arg1" ]; then
     shift
     emerge -av $*
@@ -18,15 +25,21 @@ elif [ "$1" == "$arg3" ]; then
     shift
     emerge -aC $*
 elif [ "$1" == "$arg4" ]; then
-    shift
-    emerge --sync
+    if [ "$eix" == 1 ]; then
+        eix-sync
+    else
+        emerge --sync
+    fi
 elif [ "$1" == "$arg5" ]; then
-    shift
     emerge -avuND @world
 elif [ "$1" == "$arg6" ]; then
-    shift
     smart-live-rebuild
 elif [ "$1" == "$arg7" ]; then
-    shift
-    emerge --search $*
+    if [ "$eix" == 1 ]; then
+        shift
+        eix -R $*
+    else
+        shift
+        emerge --search $*
+    fi
 fi
