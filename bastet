@@ -7,14 +7,19 @@ arg4="sync"
 arg5="update"
 arg6="live-update"
 arg7="search"
+zugaina=1
+eixcheck=1
 
 ### Checking if eix is installed
-if test -f /usr/bin/eix; then
-    eix=1
-else
-    eix=0
+if [ "$eixcheck" == 1 ]; then
+    if test -f /usr/bin/eix; then
+        eix=1
+    else
+        eix=0
+    fi
 fi
 
+### checking and executing arguments
 if [ "$1" == "$arg1" ]; then
     shift
     emerge -av $*
@@ -38,8 +43,18 @@ elif [ "$1" == "$arg7" ]; then
     if [ "$eix" == 1 ]; then
         shift
         eix -R $*
+        if [ "$zugaina" == 1 ]; then
+            printf "\n"
+            printf "%s\n" "Zugaina search:"
+            printf "%s\n" "http://gpo.zugaina.org/Search?search=$*"
+        fi
     else
         shift
         emerge --search $*
+        if [ "$zugaina" == 1 ]; then
+            printf "\n"
+            printf "%s\n" "Zugaina search:"
+            printf "%s\n" "http://gpo.zugaina.org/Search?search=$*"
+        fi
     fi
 fi
