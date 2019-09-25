@@ -46,7 +46,11 @@ elif [ "$1" == "$arg4" ]; then
 elif [ "$1" == "$arg5" ]; then
     emerge -avuND @world
 elif [ "$1" == "$arg6" ]; then
-    smart-live-rebuild
+    if test -f /usr/bin/smart-live-rebuild1; then
+        smart-live-rebuild
+    else
+        printf "%s\n" "You don't have 'smart-live-rebuild' installed!"
+    fi
 elif [ "$1" == "$arg7" ]; then
     if [ "$eix" == true ]; then
         shift
