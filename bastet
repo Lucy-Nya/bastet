@@ -1,5 +1,6 @@
 #!/bin/bash 
 
+### Setting the arguments
 arg1="install"
 arg2="uninstall"
 arg3="remove"
@@ -7,15 +8,22 @@ arg4="sync"
 arg5="update"
 arg6="live-update"
 arg7="search"
-zugaina=1
-eixcheck=1
+
+### Checking if the config file exists and using it when available
+if test -f /etc/bastet/config; then
+    zugaina="$(cat /etc/bastet/config | grep zugaina | cut -c 11-)"
+    eixcheck="$(cat /etc/bastet/config | grep eix | cut -c 7-)"
+else
+    zugaina=true
+    eixcheck=true
+fi
 
 ### Checking if eix is installed
-if [ "$eixcheck" == 1 ]; then
+if [ "$eixcheck" == true ]; then
     if test -f /usr/bin/eix; then
-        eix=1
+        eix=true
     else
-        eix=0
+        eix=false
     fi
 fi
 
@@ -30,7 +38,7 @@ elif [ "$1" == "$arg3" ]; then
     shift
     emerge -aC $*
 elif [ "$1" == "$arg4" ]; then
-    if [ "$eix" == 1 ]; then
+    if [ "$eix" == true ]; then
         eix-sync
     else
         emerge --sync
@@ -40,10 +48,10 @@ elif [ "$1" == "$arg5" ]; then
 elif [ "$1" == "$arg6" ]; then
     smart-live-rebuild
 elif [ "$1" == "$arg7" ]; then
-    if [ "$eix" == 1 ]; then
+    if [ "$eix" == true ]; then
         shift
         eix -R $*
-        if [ "$zugaina" == 1 ]; then
+        if [ "$zugaina" == true ]; then
             printf "\n"
             printf "%s\n" "Zugaina search:"
             printf "%s\n" "http://gpo.zugaina.org/Search?search=$*"
@@ -51,7 +59,7 @@ elif [ "$1" == "$arg7" ]; then
     else
         shift
         emerge --search $*
-        if [ "$zugaina" == 1 ]; then
+        if [ "$zugaina" == true ]; then
             printf "\n"
             printf "%s\n" "Zugaina search:"
             printf "%s\n" "http://gpo.zugaina.org/Search?search=$*"
