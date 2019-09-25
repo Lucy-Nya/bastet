@@ -11,8 +11,8 @@ arg7="search"
 
 ### Checking if the config file exists and using it when available
 if test -f /etc/bastet/config; then
-    zugaina="$(cat /etc/bastet/config | grep zugaina | cut -c 11-)"
-    eixcheck="$(cat /etc/bastet/config | grep eix | cut -c 7-)"
+    zugaina="$(grep zugaina /etc/bastet/config | cut -c 11-)"
+    eixcheck="$(grep eix /etc/bastet/config | cut -c 7-)"
 else
     zugaina=true
     eixcheck=true
