@@ -1,6 +1,6 @@
 # Bastet
 ### What it Bastet?
-Bastet is a very simple and basic shell script to control emerge.
+Bastet is a very simple and basic shell script to control portage.
 
 # Why?
 Why not? But for real: Because `bastet install larry` makes more sense than `emerge -av larry`. It's really just because i got bored and wanted a more straightforward way of using emerge so that i simply can do `install`, `uninstall`, `search` etc. instead of doing it with `-` and `--` arguments.
