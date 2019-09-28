@@ -9,6 +9,7 @@ args=(
     "update" 
     "live-update" 
     "search"
+    "repo-sync"
 )
 
 ### Checking if the config file exists and using it when available
@@ -78,5 +79,9 @@ case "$1" in
                 printf "%s\n" "http://gpo.zugaina.org/Search?search=$*"
             fi
         fi
+          ;;
+    "${args[7]}")
+        shift
+        emaint -r $1 sync
           ;;
 esac 
