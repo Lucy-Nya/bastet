@@ -10,21 +10,21 @@ Maybe. I'm planning to learn more about shell scripts and who knows? maybe i'll 
 
 # Features
 - Install packages
-  - bastet install packages
+  - `bastet install packages`
 - Depclean packages
-  - bastet uninstall packages
+  - `bastet uninstall packages`
 - Unmerge packages (use with caution!)
-  - bastet remove packages
+  - `bastet remove packages`
 - Sync the database (via Portage or Eix)
-  - bastet sync
+  - `bastet sync`
 - Perform a system update
-  - bastet update
+  - `bastet update`
 - Updating live packages (9999 packages) (needs "smart-live-update" to work)
-  - bastet live-update
+  - `bastet live-update`
 - Search for packages (via Portage or Eix. can also provide a search link for zugaina)
-  - bastet search package
+  - `bastet search package`
 - Sync a repo of ur choosing
-  - bastet repo-sync repo
+  - `bastet repo-sync repo`
 
 U can toggle the zugaina search links and the usage of Eix in it's config files located at '/etc/bastet/config'
 
