@@ -92,11 +92,19 @@ case "$1" in
         emerge -a --depclean
           ;;
     "${args[9]}")
-        shift
-        layman -a $1
+        if test -f /usr/bin/layman; then
+            shift
+            layman -a $1
+        else
+            printf "%s\n" "Layman is not installed!"
+        fi
           ;;
     "${args[10]}")
-        shift
-        layman -d $1
+        if test -f /usr/bin/layman; then
+            shift
+            layman -d $1
+        else
+            printf "%s\n" "Layman is not installed!"
+        fi
           ;;
 esac 
