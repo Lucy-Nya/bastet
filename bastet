@@ -3,13 +3,13 @@
 ### Setting the arguments
 args=(
     "install" 
-    "uninstall" 
     "remove" 
+    "purge" 
     "sync" 
     "update" 
     "live-update" 
     "search"
-    "repo-sync"
+    "syncrepo"
     "sysclean"
     "addrepo"
     "delrepo"
