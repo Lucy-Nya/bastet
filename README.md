@@ -24,7 +24,13 @@ Maybe. I'm planning to learn more about shell scripts and who knows? maybe i'll 
 - Search for packages (via Portage or Eix. can also provide a search link for zugaina)
   - `bastet search package`
 - Sync a repo of ur choosing
-  - `bastet repo-sync repo`
+  - `bastet syncrepo repo`
+- Perfoming a system clean (emerge -a --depclean)
+  - `bastet sysclean`
+- Adding a layman repo
+  - `bastet addrepo repo`
+- Deleting a layman repo
+  - `bastet delrepo repo`
 
 U can toggle the zugaina search links and the usage of Eix in it's config files located at '/etc/bastet/config'
 
