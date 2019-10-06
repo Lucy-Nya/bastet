@@ -12,9 +12,9 @@ Maybe. I'm planning to learn more about shell scripts and who knows? maybe i'll 
 - Install packages
   - `bastet install packages`
 - Depclean packages
-  - `bastet uninstall packages`
-- Unmerge packages (use with caution!)
   - `bastet remove packages`
+- Unmerge packages (use with caution!)
+  - `bastet purge packages`
 - Sync the database (via Portage or Eix)
   - `bastet sync`
 - Perform a system update
