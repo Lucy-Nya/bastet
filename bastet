@@ -13,6 +13,7 @@ args=(
     "sysclean"
     "addrepo"
     "delrepo"
+    "supdate"
 )
 
 ### Checking if the config file exists and using it when available
@@ -105,6 +106,13 @@ case "$1" in
             layman -d $1
         else
             printf "%s\n" "Layman is not installed!"
+        fi
+          ;;
+    "${args[11]}")
+        if [ "$eix" == true ]; then
+            eix-sync && emerge -avuND @world
+        else
+            emerge --sync && emerge -avuND @world
         fi
           ;;
 esac 
