@@ -1,0 +1,2 @@
+#/usr/bin/env bash
+complete -W "install remove purge sync sysclean update live-update search syncrepo addrepo delrepo supdate" bastet
