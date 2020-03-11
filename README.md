@@ -35,6 +35,7 @@ Maybe. I'm planning to learn more about shell scripts and who knows? maybe i'll 
   - `bastet supdate`
 - Editing Config variables
   - `bastet setconfig <config> <true/false>`
+  
 U can also toggle the zugaina search links and the usage of Eix manually in it's config files located at '/etc/bastet/config'
 
 # God that code is garbage
