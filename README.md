@@ -31,8 +31,11 @@ Maybe. I'm planning to learn more about shell scripts and who knows? maybe i'll 
   - `bastet addrepo repo`
 - Deleting a layman repo
   - `bastet delrepo repo`
-
-U can toggle the zugaina search links and the usage of Eix in it's config files located at '/etc/bastet/config'
+- Syncing and Updating the system (A combination of Sync and Update)
+  - `bastet supdate`
+- Editing Config variables
+  - `bastet setconfig <config> <true/false>`
+U can also toggle the zugaina search links and the usage of Eix manually in it's config files located at '/etc/bastet/config'
 
 # God that code is garbage
 Yes but to be quite honest here: i don't care

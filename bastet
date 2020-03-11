@@ -1,5 +1,8 @@
 #!/bin/bash 
 
+CONFIG="/etc/bastet/config"
+eixcheck=$eix
+
 ### Setting the arguments
 args=(
     "install" 
@@ -14,23 +17,31 @@ args=(
     "addrepo"
     "delrepo"
     "supdate"
+    "setconfig"
 )
+
+function set_config(){
+    sudo sed -i "s/^\($1\s*=\s*\).*\$/\1$2/" $CONFIG
+}
 
 ### Checking if the config file exists and using it when available
 if test -f /etc/bastet/config; then
-    zugaina="$(grep zugaina /etc/bastet/config | cut -c 11-)"
-    eixcheck="$(grep eix /etc/bastet/config | cut -c 7-)"
+    source $CONFIG
 else
-    zugaina=true
-    eixcheck=true
+    sudo mkdir /etc/bastet
+    sudo touch $CONFIG
+    echo "eix=true
+zugaina=true" > $CONFIG
+    source $CONFIG
 fi
 
 ### Checking if eix is installed
 if [ "$eixcheck" == true ]; then
     if test -f /usr/bin/eix; then
-        eix=true
+        :
     else
         eix=false
+        set_config eix false
     fi
 fi
 
@@ -113,6 +124,19 @@ case "$1" in
             eix-sync && emerge -avuND @world
         else
             emerge --sync && emerge -avuND @world
+        fi
+          ;;
+    "${args[12]}")
+        shift
+        if [[ "$1" == "eix" || "$1" == "zugaina" ]]; then
+            if [[ "$2" == "true" || "$2" == "false" ]]; then
+                set_config $1 $2
+                printf "%s\n" "$1 successfully set to $2"
+            else
+                printf "%s\n" "Config variables can only be set to either 'true' or 'false'"
+            fi
+        else
+            printf "%s\n" "Invalid config value! Valid values are: 'eix' 'zugaina'"
         fi
           ;;
 esac 
